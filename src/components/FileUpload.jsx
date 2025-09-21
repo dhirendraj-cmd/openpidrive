@@ -3,30 +3,64 @@ import { useState } from "react";
 
 const FileUpload = () => {
 
-    const [selectFiles, setSelectFiles] = useState([]);
+    const [selectedFiles, setSelectedFiles] = useState([]);
 
     const handleFileChange = (e) => {
-        let selectedFiles = Array.from(e.target.files);
-        console.log("selectedFiles >>>>> ", selectedFiles, typeof(selectedFiles))
+        setSelectedFiles(Array.from(e.target.files));
+    }
 
-        if (selectedFiles){
-            for (let i=0; i<=selectedFiles.length; i++){
-            
-        }
+    const handleUpload = async () => {
+
+        if (selectedFiles.length == 0) {
+            alert("No Files selected!!, Please select and upload")
+            return
         }
 
-        setSelectFiles(selectedFiles)
+        const formData = new FormData();
+
+        selectedFiles.forEach((file) => {
+            formData.append('files', file); // files is the key which is expected in backend api
+        })
+
+        try {
+            const response = await fetch("/api/uploadfiles/", {
+                method: 'POST',
+                body: formData,
+            })
+
+            if (response.ok){
+                const data = await response.json();
+                console.log("Uploaded Successfully", data);
+                alert("All files uploaded successfully!")
+                setSelectedFiles([]);
+            }
+            else {
+                console.error("Failed to Upload ", response.statusText);
+                alert("File upload failed!")
+            }
+        }
+        catch (error) {
+            console.error('Error during upload:', error);
+            alert('An error occurred during upload.');
+        }
+
     }
 
     return (
         <div>
-            <input type="file" multiple onChange={handleFileChange}/>
-            {
-                selectFiles.map((file, index) => (
-                    <li key={index}>{file.name}</li>
-                ))
-            }
-            <button type="submit">Upload Files</button>
+            <input type="file" multiple onChange={handleFileChange} />
+            {selectedFiles.length > 0 && (
+                <div>
+                    <ul>
+                        {
+                            selectedFiles.map((file, index) => (
+                            <li key={index}>{file.name}</li>
+                        ))
+                        }
+                    </ul>
+                </div>
+            )}
+            <button type="submit" onClick={handleUpload}>Upload Files</button>
         </div>
     )
 
