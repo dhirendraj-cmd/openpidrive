@@ -23,7 +23,7 @@ const FileUpload = () => {
         })
 
         try {
-            const response = await fetch("/api/uploadfiles/", {
+            const response = await fetch("http://localhost:8000/uploadfiles/", {
                 method: 'POST',
                 body: formData,
             })
@@ -48,7 +48,10 @@ const FileUpload = () => {
 
     return (
         <div>
-            <input type="file" multiple onChange={handleFileChange} />
+            <label htmlFor="upload">
+                <b>Browse: </b>
+            </label>
+            <input type="file" name="upload" multiple onChange={handleFileChange} />
             {selectedFiles.length > 0 && (
                 <div>
                     <ul>
