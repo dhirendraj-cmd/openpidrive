@@ -23,7 +23,7 @@ const FileUpload = () => {
         })
 
         try {
-            const response = await fetch("http://localhost:8000/uploadfiles/", {
+            const response = await fetch("upload_file_api", {
                 method: 'POST',
                 body: formData,
             })
