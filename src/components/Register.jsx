@@ -1,5 +1,6 @@
 import { useState } from "react";
 import * as Yup from "yup";
+import '../App.css';
 
 
 const Register = () => {
@@ -13,7 +14,7 @@ const Register = () => {
 
     const [formData, setFormData] = useState(userData)
 
-    const [errors, setErrors] = useState()
+    const [errors, setErrors] = useState({})
 
     const validationSchema = Yup.object({
         name: Yup.string().required("Name is Required!"),
@@ -38,15 +39,15 @@ const Register = () => {
     const handleFormSubmit = async (e) => {
         e.preventDefault();
 
-        console.log(formData, typeof(formData));
+        // console.log(formData, typeof(formData))
 
         try {
             await validationSchema.validate(formData, {abortEarly: false});
             console.log("Submitted!", formData)
 
-            // http://localhost:8000/
+            // <YOUR_API_ENDPOINT>
 
-            const response = await fetch("", {
+            const response = await fetch("/account/register/", {
                 method: 'POST',
                 headers:{
                     'Content-Type': 'application/json',
@@ -81,49 +82,44 @@ const Register = () => {
     
 
     return (
-        <form onSubmit={handleFormSubmit}>
-            <div>
-                <label htmlFor="register">
-                    <p>Register</p>
-                </label>
-                <br/>
-                <br/>
+            <div className="main-register-container">
+                <form onSubmit={handleFormSubmit} className="auth-form-box">
+                        <h2 style={{ textAlign: "center", marginBottom: "1rem" }}>Register</h2>
+                        <label htmlFor="name">
+                            Name:
+                            <input type="text" className="name-field" name="name" placeholder="Enter Name" value={formData.name} onChange={handleInputChange}/>
+                            {errors?.name && <div className="error">{errors?.name}</div>}
+                        </label>
+                        <br/>
+                        <br/>
+                        <label htmlFor="email">
+                            Email:
+                            <input type="email" className="email-field" name="email" placeholder="Enter Email" value={formData.email} onChange={handleInputChange}/>
+                            {errors?.email && <div className="error">{errors?.email}</div>}
+                        </label>
+                        <br/>
+                        <br/>
+                        <label htmlFor="username">
+                            Username:
+                            <input type="text" className='username-field' name="username" placeholder="Username should be of min 3 characters" value={formData.username} onChange={handleInputChange}/>
+                            {errors?.username && <div className="error">{errors?.username}</div>}
+                        </label>
+                        <br/>
+                        <br/>
+                        <label htmlFor="password">
+                            Password:
+                            <input type="password" className='pwd-field' name="password" placeholder="Enter Password" value={formData.password} onChange={handleInputChange}/>
+                            {errors?.password && <div className="error">{errors?.password}</div>}
+                        </label>
+                        <br/>
+                        <br/>
 
-                <label htmlFor="name">
-                    Name:
-                    <input type="text" name="name" placeholder="Enter Name" value={formData.name} onChange={handleInputChange}/>
-                    {errors?.name && <div className="error">{errors?.name}</div>}
-                </label>
-                <br/>
-                <br/>
-                <label htmlFor="email">
-                    Email:
-                    <input type="email" name="email" placeholder="Enter Email" value={formData.email} onChange={handleInputChange}/>
-                    {errors?.email && <div className="error">{errors?.email}</div>}
-                </label>
-                <br/>
-                <br/>
-                <label htmlFor="username">
-                    Username:
-                    <input type="text" name="username" placeholder="Username should for min 3 characters" value={formData.username} onChange={handleInputChange}/>
-                    {errors?.username && <div className="error">{errors?.username}</div>}
-                </label>
-                <br/>
-                <br/>
-                <label htmlFor="password">
-                    Password:
-                    <input type="password" name="password" placeholder="Enter Password" value={formData.password} onChange={handleInputChange}/>
-                    {errors?.password && <div className="error">{errors?.password}</div>}
-                </label>
-                <br/>
-                <br/>
+                        <div className="submitbtn" >
+                            <button type="submit">Sign Up</button>
+                        </div>
 
-                <div className="submitbtn">
-                    <button type="submit">Sign Up</button>
-                </div>
-
+                </form>
             </div>
-        </form>
     )
 
 }

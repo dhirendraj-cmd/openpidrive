@@ -1,0 +1,285 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+*{
+  font-family: "Poppins", sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  /* ... existing styles for navbar ... */
+  background-color: #333;
+  color: #fff;
+  padding: 1rem 2rem;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+/* Flexbox for aligning navigation items */
+.nav-contents {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+}
+
+.header {
+  display: flex;
+  align-items: center;
+}
+
+.auth-links {
+  display: flex;
+  align-items: center;
+}
+
+/* Style for the unordered list */
+.unordered {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Style for each list item */
+
+.unordered li:first-child a {
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+/* Hover effect for list items */
+.unordered li:hover {
+  color: #ccc;
+  cursor: pointer;
+}
+
+.unordered li a, .auth-links a {
+  color: white; /* Sets text color to white */
+  text-decoration: none; /* Removes underline */
+  padding: 0.5rem 1rem;
+}
+
+.auth-links .btn {
+  padding: 8px 15px;
+  border-radius: 5px;
+  margin-left: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.auth-links .btn-login {
+  background-color: lightseagreen;
+  border: 1px solid lightseagreen;
+}
+
+.auth-links .btn-register {
+  background-color: lightseagreen; /* Your original button color */
+  border: 1px solid lightseagreen;
+}
+
+/* Hover effect for links */
+.unordered li a:hover, .auth-links .btn:hover {
+  background-color: #555;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* Ensure active NavLinks are also styled correctly */
+.unordered li .active {
+  font-weight: bold;
+}
+
+.main-content {
+  padding-top: 64px; /* Adjust this value to match your navbar's height */
+}
+
+/* upload file */
+.main-upload-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 64px); /* Subtract the navbar height */
+  width: 100%;
+}
+
+.upload {
+  background-color: #f9f9f9;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 90%; /* Responsive width */
+  max-width: 500px; /* Max width for larger screens */
+  box-sizing: border-box;
+}
+
+.upload label {
+  display: block; /* Takes up full width for better click area */
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.upload .selection {
+  /* Hides the original file input, replaced by a custom-styled label/button */
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.upload .selection + label {
+  display: inline-block;
+  cursor: pointer;
+  padding: 0.75rem 1.5rem;
+  background-color: lightseagreen;
+  color: white;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  border: none;
+}
+
+.upload .selection + label:hover {
+  background-color: #0c8a7d;
+}
+
+.upload button {
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.upload button:hover {
+  background-color: #555;
+}
+
+.uploading ul {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+  text-align: left;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+.uploading li {
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid #eee;
+  font-size: 0.9rem;
+}
+
+.uploading li:last-child {
+  border-bottom: none;
+}
+
+/* =========================
+   Auth Forms (Login + Register)
+   ========================= */
+.main-register-container,
+.main-login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* centers vertically */
+  align-items: center; /* centers horizontally */
+  min-height: calc(100vh - 64px); /* accounts for navbar height */
+  background-color: #f9f9f9;
+  padding: 2rem;
+}
+
+/* Reusable card design for both forms */
+.auth-form-box {
+  background: white;
+  padding: 1.75rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+.auth-form-box form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem; /* uniform small vertical gap between fields */
+}
+
+/* Inputs and labels */
+.auth-form-box label {
+  margin-bottom: 0.4rem;
+  font-weight: 400;
+}
+
+.auth-form-box input {
+  width: 100%;
+  margin: 0;
+  padding: 8px 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+/* Submit button */
+.auth-form-box .submitbtn {
+  text-align: center;
+  margin-top: 0.25rem;
+}
+
+.auth-form-box .submitbtn button {
+  background-color: lightseagreen;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.auth-form-box .submitbtn button:hover {
+  background-color: #0c8a7d;
+}
+
+/* Error text styling */
+.error {
+  color: red;
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+}
+
+
+@media (max-width: 600px) {
+  .nav-contents {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .auth-links {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap; /* buttons wrap instead of overflowing */
+  }
+
+  .auth-links .btn {
+    flex: 1;
+    text-align: center;
+    padding: 8px 0;
+    font-size: 0.9rem;
+  }
+}
+
