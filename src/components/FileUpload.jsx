@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import '../App.css';
 
 const FileUpload = () => {
 
@@ -19,11 +19,11 @@ const FileUpload = () => {
         const formData = new FormData();
 
         selectedFiles.forEach((file) => {
-            formData.append('files', file); // files is the key which is expected in backend api
+            formData.append('files', file); // files is the key which is expected in backend api <YOUR_API_ENDPOINT>
         })
 
         try {
-            const response = await fetch("", {
+            const response = await fetch("http://localhost:8000/upload/uploadfiles/", {
                 method: 'POST',
                 body: formData,
             })
@@ -47,13 +47,14 @@ const FileUpload = () => {
     }
 
     return (
-        <div>
-            <label htmlFor="upload">
+        <div className="main-upload-container">
+        <div className="upload">
+            <label htmlFor="file-input">
                 <b>Browse: </b>
             </label>
-            <input type="file" name="upload" multiple onChange={handleFileChange} />
+            <input type="file" id="file-input" className="selection" name="upload" multiple onChange={handleFileChange} />
             {selectedFiles.length > 0 && (
-                <div>
+                <div className="uploading">
                     <ul>
                         {
                             selectedFiles.map((file, index) => (
@@ -63,10 +64,17 @@ const FileUpload = () => {
                     </ul>
                 </div>
             )}
-            <button type="submit" onClick={handleUpload}>Upload Files</button>
+            <button type="button" onClick={handleUpload}>Upload Files</button>
+        </div>
         </div>
     )
 
 }
 
 export default FileUpload
+
+
+
+// http://localhost:8000/upload/uploadfiles/
+// http://localhost:8000/account/register/
+// http://localhost:8000/account/login/
