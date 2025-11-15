@@ -1,7 +1,7 @@
 import { useState } from "react";
 import * as Yup from "yup";
 import '../App.css';
-
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
 
@@ -15,6 +15,8 @@ const Register = () => {
     const [formData, setFormData] = useState(userData)
 
     const [errors, setErrors] = useState({})
+
+    const navigate = useNavigate();
 
     const validationSchema = Yup.object({
         name: Yup.string().required("Name is Required!"),
@@ -47,7 +49,7 @@ const Register = () => {
 
             // <YOUR_API_ENDPOINT>
 
-            const response = await fetch("/account/register/", {
+            const response = await fetch("http://localhost:8000/account/register/", {
                 method: 'POST',
                 headers:{
                     'Content-Type': 'application/json',
@@ -56,26 +58,36 @@ const Register = () => {
             })
 
             if (!response.ok) {
-                throw new Error(`HTTP Error is: ${response.status}`)
+                const errorData = await response.json();
+                throw new Error(`HTTP Error is: ${response.status}, Message: ${JSON.stringify(errorData)}`)
             }
 
-            const result = await response.json();
-            console.log("result is: ", result);
+            const jsonData = await response.json();
+            console.log("jsondata is >> : ", jsonData);
+
+            if (response.status == 200){
+                alert("User Successfully Registered!!!");
+                navigate("/")
+            }
+
             setFormData(userData);
             setErrors({})
 
         } catch (error) {
             console.log(error.inner);
-            console.log("Error after submission: ", error);
-            const newErrors = {}
+            console.log("Error after submitting is : ", error, typeof(error));
+            
+            if (error.inner){
+                const newErrors = {}
 
-            error.inner?.forEach((err) => {
-                newErrors[err.path] = err.message;
-            })
-
-            setErrors(newErrors);
+                error.inner?.forEach((err) => {
+                    newErrors[err.path] = err.message;
+                })
+                setErrors(newErrors);
+            } else {
+                console.error("API call failed:", error.message);
+            }
         }
-
 
 
     }

@@ -1,86 +1,54 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import AuthContext from "../context/AuthContext";
 import '../App.css';
 
 
 const Login = () => {
 
-    const loginData = {
-        username: "",
-        password: ""
-    }
+    const [credentials, setCredentials] = useState({username:'', password:''})
+    const { login } = useContext(AuthContext);
 
-    const [formData, setFormData] = useState(loginData);
+    const navigate = useNavigate();
 
-    const [errors, setErrors] = useState({});
-
-    const handleInputChange = (event) => {
-        const {name, value} = event.target;
-
-        setFormData((prev) => ({...prev, [name]:value}))
-    }
-
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-
-        console.log("formData>>>>> ", formData);
-
-        try {
-            const response = await fetch("/account/login/", {
-                method: "POST",
-                headers:{
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
-            })
-
-            if (!response.ok){
-                throw new Error(`HTTP Error is: ${response.status}`)
-            }
-
-            const result = await response.json();
-            console.log("result is: ", result);
-            setFormData(loginData)
-            setErrors({})
-        }
-        catch (error){
-
-        }
-
-
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        // console.log("submitting...", credentials);
+        login(credentials, navigate);
     }
 
     return (
-  <div className="main-login-container">
-    <form onSubmit={handleSubmit} className="auth-form-box">
-      <h2 style={{ textAlign: "center", marginBottom: "1rem" }}>Login</h2>
+        <div className="main-login-container">
+          <form onSubmit={handleSubmit} className="auth-form-box">
+            <h2 style={{ textAlign: "center", marginBottom: "1rem" }}>Login</h2>
 
-      <label htmlFor="username">
-        Username:
-        <input
-          type="text"
-          name="username"
-          placeholder="Enter Username"
-          value={formData.username}
-          onChange={handleInputChange}
-        />
-      </label>
+            <label htmlFor="username">
+              Username:
+              <input
+                type="text"
+                name="username"
+                placeholder="Enter Username"
+                value={credentials.username}
+                onChange={(e) => setCredentials({...credentials, username: e.target.value})}
+              />
+            </label>
 
-      <label htmlFor="password">
-        Password:
-        <input
-          type="password"
-          name="password"
-          placeholder="Enter Password"
-          value={formData.password}
-          onChange={handleInputChange}
-        />
-      </label>
+            <label htmlFor="password">
+              Password:
+              <input
+                type="password"
+                name="password"
+                placeholder="Enter Password"
+                value={credentials.password}
+                onChange={(e) => setCredentials({...credentials, password: e.target.value})}
+              />
+            </label>
 
-      <div className="submitbtn">
-        <button type="submit">Login</button>
-      </div>
-    </form>
-  </div>
+            <div className="submitbtn">
+              <button type="submit">Login</button>
+            </div>
+          </form>
+        </div>
 );
 
 }
