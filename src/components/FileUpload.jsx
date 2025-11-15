@@ -19,7 +19,7 @@ const FileUpload = () => {
         const formData = new FormData();
 
         selectedFiles.forEach((file) => {
-            formData.append('files', file); // files is the key which is expected in backend api <YOUR_API_ENDPOINT>
+            formData.append('files', file); // files is the key which is expected in backend api <API_ENDPOINT>
         })
 
         try {
@@ -72,9 +72,3 @@ const FileUpload = () => {
 }
 
 export default FileUpload
-
-
-
-// http://localhost:8000/upload/uploadfiles/
-// http://localhost:8000/account/register/
-// http://localhost:8000/account/login/

@@ -11,6 +11,41 @@ body {
   padding: 0;
 }
 
+.home-container {
+  min-height: calc(100vh - 64px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.home-glass-box {
+  background: rgba(255, 255, 255, 0.45); /* subtle glass effect */
+  backdrop-filter: blur(14px) saturate(180%);
+  -webkit-backdrop-filter: blur(14px) saturate(180%);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  padding: 2rem 2.5rem;
+  max-width: 700px;
+  text-align: center;
+  color: #333; /* <-- IMPORTANT: text now fully visible */
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.home-glass-box h2 {
+  margin-top: 0;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.home-glass-box p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-top: 1rem;
+}
+
+
+
 .navbar {
   /* ... existing styles for navbar ... */
   background-color: #333;
@@ -34,8 +69,34 @@ body {
   align-items: center;
 }
 
-.auth-links {
+.left-nav {
   display: flex;
+  align-items: center;
+}
+
+.brand {
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: white;
+  text-decoration: none;
+}
+
+.right-nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* space between username and logout */
+}
+
+.welcome-text {
+  color: white;
+  font-size: 1rem;
+}
+
+
+.auth-links {
+  margin-left: auto;
+  display: flex;
+  gap: 10px;
   align-items: center;
 }
 
@@ -70,17 +131,23 @@ body {
   padding: 8px 15px;
   border-radius: 5px;
   margin-left: 10px;
+  color: #fff;
   transition: background-color 0.3s ease;
 }
 
 .auth-links .btn-login {
-  background-color: lightseagreen;
-  border: 1px solid lightseagreen;
+  background-color: #36454F;
+  border: 1px solid rgb(58, 198, 7);
 }
 
 .auth-links .btn-register {
-  background-color: lightseagreen; /* Your original button color */
-  border: 1px solid lightseagreen;
+  background-color: #36454F; /* Your original button color */
+  border: 1px solid rgb(58, 198, 7);
+}
+
+.auth-links .btn-logout {
+  background-color: #36454F; /* Your original button color */
+  border: 1px solid rgb(58, 198, 7);
 }
 
 /* Hover effect for links */
