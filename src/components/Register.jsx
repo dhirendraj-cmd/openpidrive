@@ -67,7 +67,7 @@ const Register = () => {
 
             if (response.status == 200){
                 alert("User Successfully Registered!!!");
-                navigate("/")
+                navigate("/login");
             }
 
             setFormData(userData);

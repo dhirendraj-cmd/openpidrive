@@ -1,5 +1,6 @@
-import { useState } from "react";
 import '../App.css';
+import { useState } from "react";
+import api from "../axiosInstance";
 
 const FileUpload = () => {
 
@@ -23,25 +24,22 @@ const FileUpload = () => {
         })
 
         try {
-            const response = await fetch("http://localhost:8000/upload/uploadfiles/", {
-                method: 'POST',
-                body: formData,
-            })
+            const response = await api.post("/upload/uploadfiles/", formData, {
+                                headers: { "Content-Type": "multipart/form-data" },
+                            });
 
-            if (response.ok){
-                const data = await response.json();
-                console.log("Uploaded Successfully", data);
-                alert("All files uploaded successfully!")
-                setSelectedFiles([]);
-            }
-            else {
-                console.error("Failed to Upload ", response.statusText);
-                alert("File upload failed!")
-            }
+            console.log("Uploaded Successfully", response.data);
+            alert("All files uploaded successfully!")
+            setSelectedFiles([]);
         }
         catch (error) {
-            console.error('Error during upload:', error);
-            alert('An error occurred during upload.');
+            if (error.response && error.response.status === 401){
+                console.error('Error during upload:', error);
+                alert("Please login to upload files")
+            } else {
+                console.error('Error during upload:', error);
+                alert('An error occurred during upload.');
+            }
         }
 
     }
