@@ -47,7 +47,6 @@ body {
 
 
 .navbar {
-  /* ... existing styles for navbar ... */
   background-color: #333;
   color: #fff;
   padding: 1rem 2rem;
@@ -84,7 +83,7 @@ body {
 .right-nav {
   display: flex;
   align-items: center;
-  gap: 1rem; /* space between username and logout */
+  gap: 1rem; 
 }
 
 .welcome-text {
@@ -193,7 +192,7 @@ body {
 }
 
 .upload .selection {
-  /* Hides the original file input, replaced by a custom-styled label/button */
+
   width: 0.1px;
   height: 0.1px;
   opacity: 0;
@@ -253,21 +252,18 @@ body {
   border-bottom: none;
 }
 
-/* =========================
-   Auth Forms (Login + Register)
-   ========================= */
 .main-register-container,
 .main-login-container {
   display: flex;
   flex-direction: column;
-  justify-content: center; /* centers vertically */
-  align-items: center; /* centers horizontally */
-  min-height: calc(100vh - 64px); /* accounts for navbar height */
+  justify-content: center; 
+  align-items: center; 
+  min-height: calc(100vh - 64px); 
   background-color: #f9f9f9;
   padding: 2rem;
 }
 
-/* Reusable card design for both forms */
+
 .auth-form-box {
   background: white;
   padding: 1.75rem;
@@ -280,10 +276,10 @@ body {
 .auth-form-box form {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem; /* uniform small vertical gap between fields */
+  gap: 0.75rem; 
 }
 
-/* Inputs and labels */
+
 .auth-form-box label {
   margin-bottom: 0.4rem;
   font-weight: 400;
@@ -298,14 +294,14 @@ body {
   font-size: 1rem;
 }
 
-/* Submit button */
+
 .auth-form-box .submitbtn {
   text-align: center;
   margin-top: 0.25rem;
 }
 
 .auth-form-box .submitbtn button {
-  background-color: lightseagreen;
+  background-color: #36454F;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -319,7 +315,6 @@ body {
   background-color: #0c8a7d;
 }
 
-/* Error text styling */
 .error {
   color: red;
   font-size: 0.85rem;
@@ -339,7 +334,7 @@ body {
     display: flex;
     justify-content: center;
     gap: 0.5rem;
-    flex-wrap: wrap; /* buttons wrap instead of overflowing */
+    flex-wrap: wrap;
   }
 
   .auth-links .btn {

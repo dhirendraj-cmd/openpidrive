@@ -55,6 +55,12 @@ export const AuthProvider = ({children}) => {
             
         } catch (error) {
             console.log("LOGIN ERROR >>>>>>>> ", error)
+            console.log("resonse  ERROR >>>>>>>> ", error.response.status)
+
+            if (error.response.status == 401){
+                console.log("detail>>>>>", error.response.data.detail)
+                alert("Username or Password is incorrect");
+            }
         } finally {
             setLoading(false);
         }
