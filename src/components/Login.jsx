@@ -13,7 +13,7 @@ const Login = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("submitting...", credentials);
+        console.log("submitting...");
         login(credentials, navigate);
     }
 
