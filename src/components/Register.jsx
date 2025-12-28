@@ -45,7 +45,7 @@ const Register = () => {
 
         try {
             await validationSchema.validate(formData, {abortEarly: false});
-            console.log("Submitted!", formData)
+            console.log("Submitted!>>>>>")
 
             // <YOUR_API_ENDPOINT>
 
