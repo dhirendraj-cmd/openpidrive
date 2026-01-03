@@ -103,13 +103,11 @@ const Register = () => {
                             {errors?.name && <div className="error">{errors?.name}</div>}
                         </label>
                         <br/>
-                        <br/>
                         <label htmlFor="email">
                             Email:
                             <input type="email" className="email-field" name="email" placeholder="Enter Email" value={formData.email} onChange={handleInputChange}/>
                             {errors?.email && <div className="error">{errors?.email}</div>}
                         </label>
-                        <br/>
                         <br/>
                         <label htmlFor="username">
                             Username:
@@ -117,13 +115,11 @@ const Register = () => {
                             {errors?.username && <div className="error">{errors?.username}</div>}
                         </label>
                         <br/>
-                        <br/>
                         <label htmlFor="password">
                             Password:
                             <input type="password" className='pwd-field' name="password" placeholder="Enter Password" value={formData.password} onChange={handleInputChange}/>
                             {errors?.password && <div className="error">{errors?.password}</div>}
                         </label>
-                        <br/>
                         <br/>
 
                         <div className="submitbtn" >

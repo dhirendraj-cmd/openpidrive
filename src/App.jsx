@@ -18,6 +18,7 @@ function App() {
         <AuthProvider>
           <BrowserRouter>
             <Navbar />
+            <br/>
             <main className="main-content">
             <Routes>
                 <Route path='/' element={<Home />} />
